@@ -40,4 +40,4 @@ TODO:
 1. The current weather dewpoint, according exertion, maybe strava activity integration.
 
 ## License
-MIT
+MIT. 
