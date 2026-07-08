@@ -29,15 +29,11 @@ $$
 | 21–24°C    | Very humid         | Significant slowdown      |
 | Above 24°C | Oppressive         | High heat stress risk     |
 
-
 e.g. 
 13/06/2026, 5.30 Panskura, WB, India:
 27 + 100% = 27 degree dew point ~ felt hard for amateur.
 13/06/2026, 15:13 Nakano, Japan:
 28 + 52% = 17.2 degree celsius ~ "too hot to run"- according to elite.
-
-TODO: 
-1. The current weather dewpoint, according exertion, maybe strava activity integration.
 
 ## License
 MIT
