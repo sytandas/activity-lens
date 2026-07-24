@@ -34,3 +34,6 @@ e.g.
 27 + 100% = 27 degree dew point ~ felt hard for amateur.
 13/06/2026, 15:13 Nakano, Japan:
 28 + 52% = 17.2 degree celsius ~ "too hot to run"- according to elite.
+
+#LICENSE
+MIT
