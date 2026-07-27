@@ -36,4 +36,4 @@ e.g.
 28 + 52% = 17.2 degree celsius ~ "too hot to run"- according to elite.
 
 #LICENSE
-MIT
+MIT.
