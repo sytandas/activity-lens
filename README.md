@@ -1,39 +1,30 @@
-Dew point is essentially how much moisture is actually in the air. 
-We can calculate it by using Magnus-Tetens formula.
-The Magnus approximation is used to estimate the dew point:
+# ActivityLens
 
-$$
-T_d = \frac{b\gamma(T,RH)}{a-\gamma(T,RH)}
-$$
+ActivityLens enhances your workout data with insights that aren't available at a glance. It combines weather conditions, calculated effort metrics, and workout analysis to help you better understand your training.
 
-where
+## Motivation
 
-$$
-\gamma(T,RH) = \frac{aT}{b+T} + \ln\left(\frac{RH}{100}\right)
-$$
+I built ActivityLens because I wanted to see more useful information about my workouts without opening every activity. The goal is to provide meaningful context—such as weather conditions, effort metrics, and split data—directly where it's most useful.
 
-**Constants:**
-- $a = 17.27$
-- $b = 237.7$
-- $T$ = temperature (°C)
-- $RH$ = relative humidity (%)
-- $T_d$ = dew point (°C)
+## Features
 
-| Dew Point  | Running Conditions | Effect                    |
-| ---------- | ------------------ | ------------------------- |
-| Below 10°C | Very dry           | Excellent for racing      |
-| 10–13°C    | Comfortable        | Minimal impact            |
-| 13–16°C    | Slight humidity    | Small increase in effort  |
-| 16–18°C    | Noticeable         | Pace may slow slightly    |
-| 18–21°C    | Uncomfortable      | Moderate performance loss |
-| 21–24°C    | Very humid         | Significant slowdown      |
-| Above 24°C | Oppressive         | High heat stress risk     |
+- 🌡️ Display weather information, including dew point
+- 📈 Calculate relative effort metrics
+- 🏃 View workout splits without opening each activity
+- 🔍 Quickly review activities from a single dashboard
 
-e.g. 
-13/06/2026, 5.30 Panskura, WB, India:
-27 + 100% = 27 degree dew point ~ felt hard for amateur.
-13/06/2026, 15:13 Nakano, Japan:
-28 + 52% = 17.2 degree celsius ~ "too hot to run"- according to elite.
+## TODO
 
-#LICENSE
-MIT.
+- [ ] Dew point integration
+- [ ] Relative effort calculation
+- [ ] Split summaries
+- [ ] Weather impact analysis
+
+
+## Contributing
+
+Contributions, suggestions, and bug reports are welcome.
+
+## License
+
+MIT
