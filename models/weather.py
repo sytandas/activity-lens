@@ -1,6 +1,7 @@
 from datetime import datetime
 import requests
 import json
+import math
 
 #openWeatherMap API key
 API_KEY = "bd31a44eced5cd8db6bccec47d8bc01a"
