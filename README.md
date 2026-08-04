@@ -27,4 +27,4 @@ Contributions, suggestions, and bug reports are welcome.
 
 ## License
 
-MIT.
+MIT
