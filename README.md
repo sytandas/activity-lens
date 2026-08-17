@@ -15,7 +15,7 @@ I built ActivityLens because I wanted to see more useful information about my wo
 
 ## TODO
 
-- [ ] Dew point integration
+- [x] Dew point integration
 - [ ] Relative effort calculation
 - [ ] Split summaries
 - [ ] Weather impact analysis
