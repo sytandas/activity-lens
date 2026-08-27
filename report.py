@@ -8,10 +8,10 @@ import math
 from datetime import datetime
 
 #openWeatherMap API key
-API_KEY = "bd31a44eced5cd8db6bccec47d8bc01a"
+# API_KEY = "xxxxxxxxxxxxxxxxx"
 
 #city
-city = "Panskura"
+# city = "kolkata"
 
 # API endpoint 
 url = "https://api.openweathermap.org/data/2.5/weather"
