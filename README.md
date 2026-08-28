@@ -20,11 +20,6 @@ I built ActivityLens because I wanted to see more useful information about my wo
 - [ ] Split summaries
 - [ ] Weather impact analysis
 
-
-## Contributing
-
-Contributions, suggestions, and bug reports are welcome.
-
 ## License
 
 MIT
