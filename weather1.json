@@ -1,0 +1,44 @@
+{
+    "coord": {
+        "lon": 87.7221,
+        "lat": 22.3984
+    },
+    "weather": [
+        {
+            "id": 804,
+            "main": "Clouds",
+            "description": "overcast clouds",
+            "icon": "04d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 29.24,
+        "feels_like": 35.19,
+        "temp_min": 29.24,
+        "temp_max": 29.24,
+        "pressure": 1003,
+        "humidity": 79,
+        "sea_level": 1003,
+        "grnd_level": 1002
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 3.96,
+        "deg": 191,
+        "gust": 5.67
+    },
+    "clouds": {
+        "all": 100
+    },
+    "dt": 1785548159,
+    "sys": {
+        "country": "IN",
+        "sunrise": 1785541237,
+        "sunset": 1785588610
+    },
+    "timezone": 19800,
+    "id": 1271346,
+    "name": "Panskura",
+    "cod": 200
+}
