@@ -23,5 +23,3 @@ I built ActivityLens because I wanted to see more useful information about my wo
 ## License
 
 MIT
-
-Update: 11th
