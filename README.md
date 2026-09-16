@@ -21,5 +21,4 @@ I built ActivityLens because I wanted to see more useful information about my wo
 - [ ] Weather impact analysis
 
 ## License
-
 MIT
