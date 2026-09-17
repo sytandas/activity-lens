@@ -1,4 +1,3 @@
-from datetime import datetime
 import requests
 import json
 import math
@@ -11,9 +10,6 @@ city = "Panskura"
 
 # API endpoint 
 url = "https://api.openweathermap.org/data/2.5/weather"
-
-# for particular day API endpoint 
-url_dt = "https://api.openweathermap.org/data/3.0/onecall/timemachine"
 
 params = {
     "q": city,
@@ -42,7 +38,7 @@ print(f"Humidity     : {data['main']['humidity']} %")
 print(f"Pressure     : {data['main']['pressure']} hPa")
 print(f"Wind Speed   : {data['wind']['speed']} m/s")
 print(f"Cloud Cover  : {data['clouds']['all']} %")
-print(f"Visibility   : {data['visibility'] / 1002:.1f} km")
+print(f"Visibility   : {data['visibility'] / 1000:.1f} km")
 
 if "rain" in data:
     print(f"Rain (1 hr)  : {data['rain'].get('1h', 0)} mm")
@@ -59,7 +55,5 @@ def dewpt():
 
     return dew_point
 
-
 dpt = dewpt()
-
 print(f"Dew Point   : {dpt:.1f} °C")
