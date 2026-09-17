@@ -42,17 +42,24 @@ print(f"Humidity     : {data['main']['humidity']} %")
 print(f"Pressure     : {data['main']['pressure']} hPa")
 print(f"Wind Speed   : {data['wind']['speed']} m/s")
 print(f"Cloud Cover  : {data['clouds']['all']} %")
-print(f"Visibility   : {data['visibility'] / 1000:.1f} km")
+print(f"Visibility   : {data['visibility'] / 1002:.1f} km")
 
 if "rain" in data:
     print(f"Rain (1 hr)  : {data['rain'].get('1h', 0)} mm")
 
 def dewpt():
-    temprature = float(data['main']['temp'])
+    temperature = float(data['main']['temp'])
     humidity = float(data['main']['humidity'])
 
     a = 17.27
     b = 237.7
 
-    alpha = ((a * temprature) / (b + temprature)) + math.log(humidity / 100)
-    dewpt = (b * alpha) / (a - alpha)
+    alpha = ((a * temperature) / (b + temperature)) + math.log(humidity / 100)
+    dew_point = (b * alpha) / (a - alpha)
+
+    return dew_point
+
+
+dpt = dewpt()
+
+print(f"Dew Point   : {dpt:.1f} °C")
