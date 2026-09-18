@@ -5,37 +5,40 @@
     },
     "weather": [
         {
-            "id": 804,
-            "main": "Clouds",
-            "description": "overcast clouds",
-            "icon": "04d"
+            "id": 500,
+            "main": "Rain",
+            "description": "light rain",
+            "icon": "10d"
         }
     ],
     "base": "stations",
     "main": {
-        "temp": 29.24,
-        "feels_like": 35.19,
-        "temp_min": 29.24,
-        "temp_max": 29.24,
-        "pressure": 1003,
-        "humidity": 79,
-        "sea_level": 1003,
-        "grnd_level": 1002
+        "temp": 30.06,
+        "feels_like": 37.06,
+        "temp_min": 30.06,
+        "temp_max": 30.06,
+        "pressure": 1005,
+        "humidity": 81,
+        "sea_level": 1005,
+        "grnd_level": 1005
     },
     "visibility": 10000,
     "wind": {
-        "speed": 3.96,
-        "deg": 191,
-        "gust": 5.67
+        "speed": 3.39,
+        "deg": 181,
+        "gust": 6.3
+    },
+    "rain": {
+        "1h": 0.91
     },
     "clouds": {
-        "all": 100
+        "all": 47
     },
-    "dt": 1785548159,
+    "dt": 1789646280,
     "sys": {
         "country": "IN",
-        "sunrise": 1785541237,
-        "sunset": 1785588610
+        "sunrise": 1789602981,
+        "sunset": 1789647084
     },
     "timezone": 19800,
     "id": 1271346,
