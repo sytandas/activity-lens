@@ -18,7 +18,7 @@ I built ActivityLens because I wanted to see more useful information about my wo
 - [x] Dew point integration
 - [ ] Relative effort calculation
 - [ ] Split summaries
-- [ ] Weather impact analysis
+- [x] Weather impact analysis
 
 ## License
 MIT
