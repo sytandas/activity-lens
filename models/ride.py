@@ -81,7 +81,6 @@ from fitparse import FitFile
 WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
 SEMICIRCLE_TO_DEG = 180 / 2**31  # FIT stores lat/lon as semicircles
 
-
 @dataclass
 class TrackPoint:
     time: Optional[datetime] = None
@@ -204,7 +203,6 @@ class Ride:
             "summary": {k: (round(v, 1) if v is not None else None)
                         for k, v in asdict(s).items()},
         }
-
 
 if __name__ == "__main__":
     ride = Ride("ride.fit", ftp=220).load_file()
