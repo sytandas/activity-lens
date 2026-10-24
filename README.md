@@ -19,6 +19,3 @@ I built ActivityLens because I wanted to see more useful information about my wo
 - [ ] Training intensity distribution weekly (TID)
 - [ ] Split summaries
 - [ ] Weather impact analysis
-
-## License
-MIT
