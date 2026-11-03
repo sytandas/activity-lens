@@ -6,7 +6,6 @@ import fitdecode
 
 API_KEY = os.getenv("")
 WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
-
 SEMICIRCLE = 180 / 2**31
 
 
@@ -24,14 +23,12 @@ class Ride:
             for frame in fit:
 
                 if isinstance(frame, fitdecode.FitDataMessage):
-
                     # Record messages
                     if frame.name == "record":
                         v = {
                             field.name: field.value
                             for field in frame.fields
                         }
-
                         lat = v.get("position_lat")
                         lon = v.get("position_long")
 
@@ -50,13 +47,11 @@ class Ride:
                             field.name: field.value
                             for field in frame.fields
                         }
-
                         self.info = {
                             "start": v.get("start_time"),
                             "duration_s": v.get("total_elapsed_time"),
                             "distance_m": v.get("total_distance"),
                         }
-
         self.df = pd.DataFrame(self.record)
 
     def fetch_weather(self, save_path="weather.json"):
@@ -96,7 +91,6 @@ class Ride:
             "avg_hr": hr.mean() if not hr.empty else None,
             "max_hr": hr.max() if not hr.empty else None,
         }
-
         return self.metrics
 
     def summary(self):
