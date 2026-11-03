@@ -2,14 +2,13 @@ import os
 import requests
 import pandas as pd
 import json
-from fitparse import FitFile
-from dotenv import load_dotenv
 import fitdecode
 
-load_dotenv()
-API_KEY = os.getenv("<key>")
-WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather" # endpoint
-SEMICIRCLE = 180/2**31 # for fit generally save fit file in semi cricle 
+API_KEY = os.getenv("")
+WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather"
+
+SEMICIRCLE = 180 / 2**31
+
 
 class Ride:
     def __init__(self, fit_file):
@@ -18,32 +17,47 @@ class Ride:
         self.info = {}
         self.weather = None
         self.df = None
+        self.metrics = {}
 
     def load_file(self):
-        fit = FitFile(self.fit_file)
+        with fitdecode.FitReader(self.fit_file) as fit:
+            for frame in fit:
 
-        for msg in fit.get_messages("record"):
-            v = msg.get_values()
-            lat, lon = v.get("position_lat"), v.get("position_long")
-            self.record.append({
-                "time": v.get("timestamp"),
-                "lat": lat * SEMICIRCLE if lat is not None else None,
-                "lon": lon * SEMICIRCLE if lon is not None else None,
-                "hr": v.get("heart_rate"),
-                "power": v.get("power"),
-                "distance_m": v.get("distance"), 
-            })
+                if isinstance(frame, fitdecode.FitDataMessage):
+
+                    # Record messages
+                    if frame.name == "record":
+                        v = {
+                            field.name: field.value
+                            for field in frame.fields
+                        }
+
+                        lat = v.get("position_lat")
+                        lon = v.get("position_long")
+
+                        self.record.append({
+                            "time": v.get("timestamp"),
+                            "lat": lat * SEMICIRCLE if lat is not None else None,
+                            "lon": lon * SEMICIRCLE if lon is not None else None,
+                            "hr": v.get("heart_rate"),
+                            "power": v.get("power"),
+                            "distance_m": v.get("distance"),
+                        })
+
+                    # Session messages
+                    elif frame.name == "session":
+                        v = {
+                            field.name: field.value
+                            for field in frame.fields
+                        }
+
+                        self.info = {
+                            "start": v.get("start_time"),
+                            "duration_s": v.get("total_elapsed_time"),
+                            "distance_m": v.get("total_distance"),
+                        }
 
         self.df = pd.DataFrame(self.record)
-
-        for msg in fit.get_messages("session"):
-            v = msg.get_values()
-            self.info = {
-                "start": v.get("start_time"),
-                "duration_s": v.get("total_elapsed_time"),
-                "distance_m": v.get("total_distance"),
-            }
-            break
 
     def fetch_weather(self, save_path="weather.json"):
         # using the actual start location
@@ -68,9 +82,12 @@ class Ride:
     def calculate_metrics(self):
         power = self.df["power"].dropna()
         hr = self.df["hr"].dropna()
-        # Normalized power: 30s rolling avg -> ^4 -> mean -> ^0.25
-        # (assumes ~1 Hz recording)
-        np_ = (power.rolling(30).mean().dropna() ** 4).mean() ** 0.25 if len(power) >= 30 else None
+
+        # Normalized Power approximation
+        np_ = (
+            (power.rolling(30).mean().dropna() ** 4).mean() ** 0.25
+            if len(power) >= 30 else None
+        )
 
         self.metrics = {
             "avg_power": power.mean() if not power.empty else None,
@@ -79,27 +96,46 @@ class Ride:
             "avg_hr": hr.mean() if not hr.empty else None,
             "max_hr": hr.max() if not hr.empty else None,
         }
+
         return self.metrics
 
-
-    def summery(self):
+    def summary(self):
         m = self.metrics
-        dist_km = (self.info.get("distance_m" or 0)) / 1000
-        mins = (self.info.get("duration_s" or 0)) / 60
+
+        dist_km = (self.info.get("distance_m") or 0) / 1000
+        mins = (self.info.get("duration_s") or 0) / 60
 
         print(f"Start:          {self.info.get('start')}")
-        print(f"Distance:       {dist_km: .1f} km")
-        print(f"Duration:       {mins: .0f} mins")
-        print(f"Avg power:      {m['avg_power']:.0f} W  (NP {m['norm_power']:.0f} W)" if m["avg_power"] else "No power data")
-        print(f"Avg HR:         {m['avg_hr']:.0f} bpm" if m["avg_hr"] else "No HR data")
+        print(f"Distance:       {dist_km:.1f} km")
+        print(f"Duration:       {mins:.0f} mins")
+
+        if m["avg_power"] is not None:
+            np_text = (
+                f"{m['norm_power']:.0f} W"
+                if m["norm_power"] is not None else "N/A"
+            )
+            print(f"Avg power:      {m['avg_power']:.0f} W (NP {np_text})")
+        else:
+            print("No power data")
+
+        if m["avg_hr"] is not None:
+            print(f"Avg HR:         {m['avg_hr']:.0f} bpm")
+        else:
+            print("No HR data")
+
         if self.weather:
             w = self.weather
-            print(f"Weather:    {w['main']['temp']}°C, {w['weather'][0]['description']}, wind {w['wind']['speed']} m/s")
+            print(
+                f"Weather:        {w['main']['temp']}°C, "
+                f"{w['weather'][0]['description']}, "
+                f"wind {w['wind']['speed']} m/s"
+            )
 
 
 if __name__ == "__main__":
-    ride = Ride("te1.fit")
+    ride = Ride("/home/r/dev/activity-lens/models/test.fit")
+
     ride.load_file()
     ride.fetch_weather()
     ride.calculate_metrics()
-    ride.summery()
+    ride.summary()
