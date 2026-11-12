@@ -1,7 +1,7 @@
 from models.ride import Ride
 
 def main():
-    ride = Ride("data/activities/coros-28.fit")
+    ride = Ride("")
     ride.load_file()
     ride.fetch_weather()
     ride.calculate_metrics()
