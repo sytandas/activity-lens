@@ -13,5 +13,3 @@ As a log manager and race/tt effort analysis - what will work at which condition
 - 📈 Calculate relative effort metrics.
 - 🏃 View workout splits without opening each activity.
 - 🔍 Quickly review activities from a single dashboard and foucs on goal and today's work
-
-Update: 17
